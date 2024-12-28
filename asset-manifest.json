@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/shugo_ip/static/css/main.b6ca444d.css",
+    "main.js": "/shugo_ip/static/js/main.27d770cf.js",
+    "static/js/488.6ecb4b91.chunk.js": "/shugo_ip/static/js/488.6ecb4b91.chunk.js",
+    "index.html": "/shugo_ip/index.html",
+    "main.b6ca444d.css.map": "/shugo_ip/static/css/main.b6ca444d.css.map",
+    "main.27d770cf.js.map": "/shugo_ip/static/js/main.27d770cf.js.map",
+    "488.6ecb4b91.chunk.js.map": "/shugo_ip/static/js/488.6ecb4b91.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b6ca444d.css",
+    "static/js/main.27d770cf.js"
+  ]
+}
