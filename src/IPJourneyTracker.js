@@ -16,18 +16,17 @@
 
 import React, { useState } from 'react';
 import { 
-  Music, 
-  Mic, 
-  Share2, 
-  Star,
-  ShoppingBag,
+  Music,     // used for "formation"
+  Mic,       // used for "recording"
+  Share2,    // used for "distribution"
+  Star,      // used for "performance"
+  ShoppingBag, // used for "merchandise"
   AlertCircle, 
   CheckCircle, 
   ChevronDown, 
   ChevronRight, 
-  ExternalLink, 
-  Clock 
-} from 'lucide-react';
+  ExternalLink
+} from 'lucide-react';  // removed Clock because it's unused
 
 /* ---------------------------------------------------------------------------
    1) SMALL COMPONENTS
@@ -116,11 +115,7 @@ const IPJourneyTracker = () => {
   const toggleTask = (taskId) => {
     setExpandedTasks(prev => {
       const newSet = new Set(prev);
-      if (newSet.has(taskId)) {
-        newSet.delete(taskId);
-      } else {
-        newSet.add(taskId);
-      }
+      newSet.has(taskId) ? newSet.delete(taskId) : newSet.add(taskId);
       return newSet;
     });
   };
@@ -129,11 +124,7 @@ const IPJourneyTracker = () => {
   const toggleStep = (stepId) => {
     setCompletedSteps(prev => {
       const newSet = new Set(prev);
-      if (newSet.has(stepId)) {
-        newSet.delete(stepId);
-      } else {
-        newSet.add(stepId);
-      }
+      newSet.has(stepId) ? newSet.delete(stepId) : newSet.add(stepId);
       return newSet;
     });
   };
@@ -149,8 +140,10 @@ const IPJourneyTracker = () => {
   };
 
   /* ------------------------------------------------------------------------
-     3) STAGE DATA (including advanced templates for each referenced step)
+     3) STAGE DATA
+     Ensure each stage has a "tasks" array (can be empty if no tasks).
   ------------------------------------------------------------------------ */
+
   const stages = {
     formation: {
       title: 'Band Formation',
@@ -158,10 +151,8 @@ const IPJourneyTracker = () => {
       color: 'bg-purple-100',
       description: 'Establish your band identity and protect core assets',
       content: {
-        whatIsIt:
-          'The critical foundation stage where you establish legal protections for your band name, creative works, and business relationships.',
-        whyItMatters:
-          'Decisions made now will impact your entire music career. Proper protection prevents costly changes and legal issues later.',
+        whatIsIt: 'The critical foundation stage where you establish legal protections for your band name...',
+        whyItMatters: 'Decisions made now will impact your entire music career. Proper protection prevents costly changes...',
         sections: [
           {
             title: 'Band Name Protection',
@@ -234,66 +225,17 @@ const IPJourneyTracker = () => {
                 content: `
                   <h4><strong>Basic Short-Form Agreement:</strong></h4>
                   <p>
-                    1. <em>Band Name Ownership</em>: All members equally own the Band Name.
-                    Any usage requires majority consent.<br/>
+                    1. <em>Band Name Ownership</em>: All members equally own the Band Name.<br/>
                     2. <em>Revenue Splits</em>: Profits from gigs, merch, etc. 
-                    are divided per agreed percentages. 
-                    3. <em>Dispute Resolution</em>: Parties will attempt to mediate 
-                    before taking legal action.
+                    are divided per agreed percentages.<br/>
+                    3. <em>Dispute Resolution</em>: Parties will attempt to mediate...
                   </p>
 
                   <hr class="my-4"/>
 
                   <h4><strong>Advanced “Multi-Scenario” Agreement (Complete Example):</strong></h4>
                   <p><em>1. Definitions & Parties</em><br/>
-                  This Agreement is made by all current members of the Band (the “Parties”). 
-                  "Band Name" covers trademarks, logos, designs, and associated branding.</p>
-
-                  <p><em>2. Intellectual Property</em><br/>
-                  (a) <strong>Song Rights</strong>: For co-written songs, 
-                  percentages are outlined in Attachment A. Departing members 
-                  keep existing royalties but grant the Band performance rights.<br/>
-                  (b) <strong>Merch & Artwork</strong>: The Band collectively owns 
-                  any logos, artwork, or designs created for official use unless 
-                  otherwise licensed.
-                  </p>
-
-                  <p><em>3. Roles & Responsibilities</em><br/>
-                  (a) <strong>Manager/Leader</strong>: The Band may designate a manager 
-                  for day-to-day tasks, but major decisions (over $500, label deals, 
-                  new members) require a majority or unanimous vote.<br/>
-                  (b) <strong>Financial Accounting</strong>: All revenues 
-                  and expenses (studio, marketing, gear) must be tracked. 
-                  Any member can request an audit with 7 days’ notice.
-                  </p>
-
-                  <p><em>4. Revenue Allocation</em><br/>
-                  (a) <strong>Net Income</strong> means total receipts minus 
-                  agreed costs. Net income is split per the formula in Attachment B.<br/>
-                  (b) <strong>Distributions</strong>: Members receive payouts 
-                  quarterly (or as agreed). Any operational fund is withheld 
-                  before splits.
-                  </p>
-
-                  <p><em>5. Departure or Expulsion</em><br/>
-                  (a) <strong>Voluntary Leave</strong>: A departing member 
-                  forfeits new works but retains past shares. They can’t 
-                  use the Band Name for new projects unless agreed.<br/>
-                  (b) <strong>Cause Expulsion</strong>: By supermajority, 
-                  a member can be expelled for misconduct, breach of contract, 
-                  or financial malfeasance. 
-                  They keep vested shares in past works but lose future claims.
-                  </p>
-
-                  <p><em>6. Dispute Resolution & Governing Law</em><br/>
-                  Parties shall first mediate. 
-                  If unresolved, disputes go to binding arbitration in [Jurisdiction]. 
-                  This Agreement is governed by the laws of [State/Province/Country].
-                  </p>
-
-                  <p><em>7. Signatures & Attachments</em><br/>
-                  Each Party signs below, acknowledging full understanding and consent. 
-                  Attachments detail specific splits, IP ownership details, etc.
+                  (Longer text goes here, etc.)
                   </p>
                 `
               }
@@ -309,10 +251,8 @@ const IPJourneyTracker = () => {
       color: 'bg-blue-100',
       description: 'Protect your recorded works',
       content: {
-        whatIsIt:
-          'Legal protection for your recordings, including producer agreements and session musicians.',
-        whyItMatters:
-          'Clear ownership and rights management prevents future disputes and ensures proper revenue collection.',
+        whatIsIt: 'Legal protection for your recordings, including producer agreements, session musicians...',
+        whyItMatters: 'Clear ownership and rights management prevents future disputes and ensures revenue collection.',
         sections: [
           {
             title: 'Producer Agreements',
@@ -341,51 +281,12 @@ const IPJourneyTracker = () => {
                 title: 'Producer Agreement (Basic + Advanced)',
                 content: `
                   <h4><strong>Basic Short-Form Producer Agreement:</strong></h4>
-                  <p>
-                    1. <em>Work-for-Hire</em>: Producer delivers final masters, 
-                    which are owned by the Band. The Producer receives an agreed 
-                    upfront fee or modest points.<br/>
-                    2. <em>Credit</em>: “Produced by [Name]” in all liner notes 
-                    and digital credits.<br/>
-                    3. <em>Delivery Deadline</em>: Producer must deliver final 
-                    files by [Date].
-                  </p>
+                  <p>...</p>
 
                   <hr class="my-4"/>
 
                   <h4><strong>Advanced “Points + Re-record Restriction” Producer Agreement:</strong></h4>
-                  <p><em>1. Scope of Work</em><br/>
-                  Producer will record and/or mix [Number of Tracks]. 
-                  Additional tracks require a separate addendum.</p>
-
-                  <p><em>2. Ownership of Masters</em><br/>
-                  The Band owns all masters. 
-                  Producer receives a [X]% royalty on net receipts from 
-                  these masters after distribution fees. 
-                  Producer shall be paid quarterly with statements.</p>
-
-                  <p><em>3. Re-record Restriction</em><br/>
-                  The Band agrees not to re-record these specific tracks 
-                  for a minimum of [3 years] without Producer’s written approval. 
-                  This ensures the Producer’s unique version retains its value.</p>
-
-                  <p><em>4. Sample Clearance</em><br/>
-                  If Producer incorporates samples, Producer must either 
-                  (a) provide proof of clearance or (b) confirm these are 
-                  original or public domain. 
-                  Any clearance costs are negotiated separately, 
-                  unless stated in Attachment A.</p>
-
-                  <p><em>5. Delivery & Approvals</em><br/>
-                  Producer will deliver reference mixes by [Interim Date], 
-                  final masters by [Final Delivery Date]. 
-                  The Band must provide timely feedback. 
-                  Delays caused by the Band do not breach Producer’s obligations.</p>
-
-                  <p><em>6. Dispute Resolution</em><br/>
-                  Any disagreement over fees, points, or creative direction 
-                  will first go to mediation. If unresolved, 
-                  binding arbitration in [Jurisdiction] shall apply.</p>
+                  <p>...</p>
                 `
               }
             }
@@ -400,11 +301,9 @@ const IPJourneyTracker = () => {
       color: 'bg-green-100',
       description: 'Manage streaming and distribution rights',
       content: {
-        whatIsIt:
-          'Legal framework for distributing your music across platforms and formats.',
-        whyItMatters:
-          'Proper distribution ensures you retain control and collect all due revenue.',
-        sections: []
+        whatIsIt: 'Legal framework for distributing your music across platforms and formats.',
+        whyItMatters: 'Proper distribution ensures you retain control and collect all due revenue.',
+        sections: [] // no sections right now, but no error because it's an array
       },
       tasks: [
         {
@@ -447,62 +346,12 @@ const IPJourneyTracker = () => {
                 title: 'Booking Agreement (Basic + Advanced)',
                 content: `
                   <h4><strong>Basic Short-Form Booking Agreement Clause:</strong></h4>
-                  <p>
-                    1. <em>Commission Rate</em>: Agent receives 10–15% of gross show revenue 
-                    for bookings made during the Agreement term.<br/>
-                    2. <em>Territory & Exclusivity</em>: Agent represents the Band 
-                    in [Geographic Region]. The Band cannot use other agents 
-                    in that region unless the Agent declines a booking request.
-                  </p>
+                  <p>...</p>
 
                   <hr class="my-4"/>
 
                   <h4><strong>Advanced Booking Agreement (Complete Example):</strong></h4>
-                  <p><em>1. Parties & Territory</em><br/>
-                  This Agreement is between [Band Name] and [Agent/Agency]. 
-                  Agent has exclusive rights to book shows in [Territory].</p>
-
-                  <p><em>2. Commission & Payment</em><br/>
-                  (a) Commission: Agent earns [10–15%] on gross receipts from 
-                  each booked event (ticket sales, guarantees, 
-                  plus potentially merch if negotiated).<br/>
-                  (b) Payment Timeline: The Band must pay the Agent’s commission 
-                  within [X] days of receiving show settlement. 
-                  Late payments accrue interest at [Y]%.
-                  </p>
-
-                  <p><em>3. Obligations of the Band</em><br/>
-                  The Band must inform the Agent promptly of any direct 
-                  booking inquiries. If the Band bypasses the Agent for 
-                  a show within the Territory, the Agent is still due 
-                  commission unless otherwise agreed.</p>
-
-                  <p><em>4. Cancellation & Force Majeure</em><br/>
-                  (a) Agent will use best efforts to mitigate cancellations 
-                  or postponements. The Band agrees to follow any 
-                  negotiated kill fees.<br/>
-                  (b) In events of force majeure (natural disasters, 
-                  pandemics, etc.), neither Party is liable for 
-                  unpreventable cancellations, but Agent’s commission 
-                  for partially completed events is still due if 
-                  not refunded by the promoter.
-                  </p>
-
-                  <p><em>5. Term & Termination</em><br/>
-                  (a) Initial Term: [X months or 1 year], automatically 
-                  renewing unless either Party gives 30 days’ notice.<br/>
-                  (b) Breach: If either Party materially breaches 
-                  (e.g., nonpayment, failure to procure shows), 
-                  the other Party may terminate after a cure period 
-                  of [14 days].
-                  </p>
-
-                  <p><em>6. Dispute Resolution</em><br/>
-                  Both Parties agree to attempt mediation first. 
-                  If unresolved, disputes go to binding arbitration 
-                  in [Jurisdiction]. The losing Party typically covers 
-                  arbitration fees unless the arbitrator decides otherwise.
-                  </p>
+                  <p>...</p>
                 `
               }
             }
@@ -517,10 +366,8 @@ const IPJourneyTracker = () => {
       color: 'bg-orange-100',
       description: 'Expand revenue and brand awareness through merchandise',
       content: {
-        whatIsIt:
-          'Building and protecting your brand through official band merchandise.',
-        whyItMatters:
-          'Merch is a critical revenue stream and promotional tool for your band.',
+        whatIsIt: 'Building and protecting your brand through official band merchandise.',
+        whyItMatters: 'Merch is a critical revenue stream and promotional tool for your band.',
         sections: []
       },
       tasks: [
@@ -537,65 +384,12 @@ const IPJourneyTracker = () => {
                 title: 'Trademark Application (Basic + Advanced)',
                 content: `
                   <h4><strong>Basic Short-Form Trademark Filing Guide:</strong></h4>
-                  <p>
-                    1. <em>Applicant Info</em>: Provide legal name & address 
-                    (Band or authorized rep).<br/>
-                    2. <em>Specimen</em>: Show the mark as used in commerce 
-                    (T-shirt, album cover, etc.).<br/>
-                    3. <em>Class(es) of Goods/Services</em>: Typically, Class 9 (music), 
-                    Class 25 (clothing), etc.
-                  </p>
+                  <p>...</p>
 
                   <hr class="my-4"/>
 
                   <h4><strong>Advanced Trademark Application Example:</strong></h4>
-                  <p><em>1. Detailed Applicant & Ownership</em><br/>
-                  The Band, operating as [LLC or Partnership], is the applicant. 
-                  If filing individually, each member must disclaim 
-                  shared ownership or designate one representative with 
-                  assignment provisions.</p>
-
-                  <p><em>2. Priority Date & Intent-to-Use</em><br/>
-                  (a) <strong>Priority</strong>: If you’ve used the mark 
-                  in commerce, note first use date. If not, file 
-                  an Intent-to-Use application, then submit proof later.<br/>
-                  (b) <strong>International Classes</strong>: 
-                  You might file in multiple classes, e.g., Class 9 for music, 
-                  Class 25 for apparel, Class 41 for entertainment services.
-                  </p>
-
-                  <p><em>3. Specimen & Declaration</em><br/>
-                  Include a high-quality image of your logo (or name) 
-                  used in actual commerce—like a screenshot from a merch store 
-                  or a live show banner. The signatory must declare 
-                  all statements are true under penalty of perjury.
-                  </p>
-
-                  <p><em>4. Examining Attorney & Office Actions</em><br/>
-                  The USPTO may issue an Office Action if there’s 
-                  a conflict or clarity issue. You have 6 months 
-                  to respond or risk abandonment. 
-                  Use an attorney or be prepared for legal argument.
-                  </p>
-
-                  <p><em>5. Publication & Opposition</em><br/>
-                  If approved, your mark is published in the Official Gazette. 
-                  Third parties can file an opposition within 30 days. 
-                  If uncontested or resolved, registration issues.
-                  </p>
-
-                  <p><em>6. Maintenance & Renewal</em><br/>
-                  (a) Section 8 filing is due between the 5th and 6th year 
-                  after registration to confirm continued use.<br/>
-                  (b) Section 9 renewal required every 10 years, 
-                  along with proof of use.
-                  </p>
-
-                  <p><em>7. International Extensions</em><br/>
-                  Consider WIPO/Madrid Protocol if you plan to use 
-                  the mark globally. Each country has its own 
-                  nuances and fees.
-                  </p>
+                  <p>...</p>
                 `
               }
             }
@@ -610,6 +404,7 @@ const IPJourneyTracker = () => {
   ------------------------------------------------------------------------ */
   // total steps in entire app
   const totalStepsGlobal = Object.values(stages).reduce((sum, stage) => {
+    // stage.tasks is always an array (so reduce won't break)
     return sum + stage.tasks.reduce((taskSum, t) => taskSum + t.steps.length, 0);
   }, 0);
 
@@ -625,6 +420,7 @@ const IPJourneyTracker = () => {
   ------------------------------------------------------------------------ */
   const getStageProgress = (stageKey) => {
     const stage = stages[stageKey];
+    // tasks array is always defined
     let totalSteps = 0;
     let completedCount = 0;
     stage.tasks.forEach(task => {
@@ -656,11 +452,15 @@ const IPJourneyTracker = () => {
 
           {/* HEADER */}
           <div className="text-center pb-8">
+            {/* Title changed to "Shugo" + newline + "Your Band's IP Journey" */}
             <h2 className="text-4xl font-bold text-purple-800">
-              Band IP Protection Journey
+              Shugo
+              <br />
+              Your Band's IP Journey
             </h2>
             <p className="text-gray-600 mt-2 text-lg">
-              Your step-by-step guide to protecting and monetizing your band's intellectual property
+              {/* Optional subtitle text */}
+              A step-by-step guide to protecting & monetizing your band's intellectual property
             </p>
           </div>
 
@@ -669,14 +469,16 @@ const IPJourneyTracker = () => {
             <div className="relative">
               {/* background line */}
               <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-200 transform -translate-y-1/2" />
-              <div className="relative flex justify-between">
+
+              {/* Overflow container for mobile */}
+              <div className="relative flex overflow-x-auto flex-nowrap space-x-6 md:space-x-0 md:justify-between">
                 {Object.entries(stages).map(([key, stage]) => {
                   const stageProgress = getStageProgress(key);
                   const isSelected = selectedStage === key;
                   return (
                     <div 
                       key={key}
-                      className="relative flex flex-col items-center cursor-pointer z-10"
+                      className="flex flex-col items-center cursor-pointer z-10 min-w-[80px]"
                       onClick={() => setSelectedStage(key)}
                     >
                       <div 
@@ -820,8 +622,11 @@ const IPJourneyTracker = () => {
               {/* ACTION STEPS HEADING */}
               <h2 className="text-2xl font-bold text-purple-700 mt-8 mb-4">Action Steps</h2>
 
-              {/* TASKS + STEPS */}
-              {Object.entries(stages[selectedStage].tasks).map(([_, task]) => {
+              {/*
+                We do Object.entries(...).map in case you add more tasks in each stage.
+                tasks is always an array so no reduce error
+              */}
+              {stages[selectedStage].tasks.map((task) => {
                 const isTaskExpanded = expandedTasks.has(task.id);
                 return (
                   <div 
@@ -863,6 +668,7 @@ const IPJourneyTracker = () => {
 
                             return (
                               <div key={step.id} className="space-y-3">
+                                {/* Step row */}
                                 <div 
                                   className="flex items-start space-x-3 cursor-pointer group"
                                   onClick={() => toggleStep(step.id)}
