@@ -652,8 +652,11 @@ const IPJourneyTracker = () => {
           {/* TIMELINE DOTS (horizontal overflow for mobile) */}
           <div className="mb-12 bg-white rounded-lg p-8 shadow-sm">
             <div className="relative">
+              {/* background line */}
               <div className="absolute top-1/2 left-0 right-0 h-1 bg-gray-200 transform -translate-y-1/2" />
-              <div className="relative flex overflow-x-auto flex-nowrap space-x-6 md:space-x-0 md:justify-between">
+              
+              {/* Responsive Timeline */}
+              <div className="relative flex overflow-x-auto flex-nowrap space-x-6 md:space-x-0 md:justify-between py-4">
                 {Object.entries(stages).map(([key, stage]) => {
                   const stageProgress = getStageProgress(key);
                   const isSelected = selectedStage === key;
@@ -665,14 +668,14 @@ const IPJourneyTracker = () => {
                     >
                       <div 
                         className={
-                          'w-16 h-16 rounded-full flex items-center justify-center transition-all duration-200 ' + 
+                          'w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-200 ' + 
                           stage.color +
                           (isSelected ? ' ring-4 ring-purple-400 shadow-lg scale-110' : ' hover:scale-105')
                         }
                       >
                         {stage.icon}
                       </div>
-                      <div className="mt-4 text-center">
+                      <div className="mt-2 text-center">
                         <div className={'font-semibold ' + (isSelected ? 'text-purple-700' : 'text-gray-600')}>
                           {stage.title}
                         </div>
@@ -742,14 +745,25 @@ const IPJourneyTracker = () => {
                       <div key={index} className="bg-white rounded-lg shadow-sm">
                         <button
                           onClick={() => toggleSection(index)}
-                          className="w-full text-left p-6"
+                          className="w-full text-left p-6 focus:outline-none"
                         >
-                          <h3 className="text-xl font-bold text-purple-700 mb-1">
-                            {section.title}
-                          </h3>
-                          <p className="text-gray-600">
-                            {section.description}
-                          </p>
+                          <div className="flex justify-between items-center">
+                            <div>
+                              <h3 className="text-xl font-bold text-purple-700 mb-1">
+                                {section.title}
+                              </h3>
+                              <p className="text-gray-600">
+                                {section.description}
+                              </p>
+                            </div>
+                            <div>
+                              {isOpen ? (
+                                <ChevronDown className="w-5 h-5 text-gray-400" />
+                              ) : (
+                                <ChevronRight className="w-5 h-5 text-gray-400" />
+                              )}
+                            </div>
+                          </div>
                         </button>
                         {isOpen && section.details && (
                           <div className="px-6 pb-6">
